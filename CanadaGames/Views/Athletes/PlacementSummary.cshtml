@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CanadaGames.ViewModels.PlacementSummary>
+
+@{
+    ViewData["Title"] = "Placement Summary";
+}
+
+<h1>Placement Summary</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AthleteCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContingentCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AveragePlacement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HighestPlacement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LowestPlacement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalEvents)
+            </th>
+            
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AthleteCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContingentCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AveragePlacement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighestPlacement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LowestPlacement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalEvents)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<CanadaGames.Models.Sport>
+
+@{
+    ViewData["Title"] = "Sport Index";
+}
+
+<h2>Sport Index</h2>
+
+<p>
+    <a asp-action="Create">Create New Sport</a>
+</p>
+<form asp-action="Index" method="get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Athletes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AthleteSports)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @{
+                        int athleteCount = item.Athletes.Count;
+                        if (athleteCount > 0)
+                        {
+                            string firstAthlete = item.Athletes.FirstOrDefault().FullName;
+                            if (athleteCount > 1)
+                            {
+                                string athleteList = "";
+                                var c = item.Athletes.ToList();
+                                for (int i = 1; i < athleteCount; i++)
+                                {
+                                    athleteList += c[i].FullName + " <br />";
+                                }
+                                <a class="" role="button" data-toggle="collapse" href="#collapseAthlete@(item.ID)"
+                                   aria-expanded="false" aria-controls="collapseAthlete@(item.ID)">
+                                    @firstAthlete... <span class="badge badge-info">@athleteCount</span>
+                                </a>
+                                <div class="collapse" id="collapseAthlete@(item.ID)">
+                                    @Html.Raw(athleteList)
+                                </div>
+                            }
+                            else
+                            {
+                                @firstAthlete
+                            }
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        int oathleteCount = item.AthleteSports.Count;
+                        if (oathleteCount > 0)
+                        {
+                            string firstOAthlete = item.AthleteSports.FirstOrDefault().Athlete.FullName;
+                            if (oathleteCount > 1)
+                            {
+                                string oathleteList = "";
+                                var c = item.AthleteSports.ToList();
+                                for (int i = 1; i < oathleteCount; i++)
+                                {
+                                    oathleteList += c[i].Athlete.FullName + " <br />";
+                                }
+                                <a class="" role="button" data-toggle="collapse" href="#collapseOAthlete@(item.ID)"
+                                   aria-expanded="false" aria-controls="collapseOAthlete@(item.ID)">
+                                    @firstOAthlete... <span class="badge badge-info">@oathleteCount</span>
+                                </a>
+                                <div class="collapse" id="collapseOAthlete@(item.ID)">
+                                    @Html.Raw(oathleteList)
+                                </div>
+                            }
+                            else
+                            {
+                                @firstOAthlete
+                            }
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <partial name="_PagingNavBar" />
+</form>

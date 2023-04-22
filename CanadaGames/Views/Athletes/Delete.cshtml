@@ -1,0 +1,155 @@
+﻿@model CanadaGames.Models.Athlete
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete Athlete</h2>
+
+<h4>Are you sure you want to delete: @Model.FullName?</h4>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.AthleteCode)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.ACode)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.YearsInSport)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.YearsInSport)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Affiliation)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Affiliation)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Goals)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Goals)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.MediaInfo)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.MediaInfo)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Contingent)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Contingent.Name)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Hometown)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Hometown.HometownContingent)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Sport)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Sport.Name)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.AthleteSports)
+        </dt>
+        <dd class="col-sm-8">
+            @{
+                int theCount = Model.AthleteSports.Count;
+                if (theCount > 0)
+                {
+                    string first = Model.AthleteSports.FirstOrDefault().Sport.Name;
+                    if (theCount > 1)
+                    {
+                        string theList = first;
+                        var c = Model.AthleteSports.ToList();
+                        for (int i = 1; i < theCount; i++)
+                        {
+                            theList += ", " + c[i].Sport.Name;
+                        }
+                        <a tabindex="0" class="" role="button" data-toggle="popover"
+                           data-trigger="focus" title="Alternate Sports" data-placement="bottom"
+                           data-content="@theList">
+                            @first... <span class="badge badge-info">
+                                @theCount
+                            </span>
+                        </a>
+                    }
+                    else
+                    {
+                        @first
+                    }
+                }
+            }
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Gender.Name)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Coach)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Coach.FullName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a href='@ViewData["returnURL"]'>Back to Athlete List</a>
+    </form>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+}

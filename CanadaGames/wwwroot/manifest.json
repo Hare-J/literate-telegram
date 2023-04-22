@@ -1,0 +1,17 @@
+{
+  "name": "Canada Games 2022",
+  "short_name": "Can. Games",
+  "description": "The most awesome application in the world",
+  "icons": [
+    {
+      "src": "/images/CG2022-Logo-1043x604.jpg",
+      "sizes": "1043x604"
+    },
+    {
+      "src": "/images/CSG-2022-Logo-1080x1080.png",
+      "sizes": "1080x1080"
+    }
+  ],
+  "display": "standalone",
+  "start_url": "/"
+}

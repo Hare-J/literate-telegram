@@ -1,0 +1,41 @@
+﻿@model CanadaGames.Models.Placement
+
+@{
+    ViewData["Title"] = "Update Placement";
+}
+
+<h3>Update Placement for Athlete:  @Model.Athlete.FullName</h3>
+
+<hr />
+<form asp-action="Update">
+    <input type="hidden" asp-for="ID" />
+    <input type="hidden" name="AthleteID" value="@Model.AthleteID" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Place" class="control-label"></label>
+                <input asp-for="Place" class="form-control" />
+                <span asp-validation-for="Place" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comments" class="control-label"></label>
+                <textarea asp-for="Comments" class="form-control"></textarea>
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventID" class="control-label"></label>
+                <select asp-for="EventID" class="form-control" asp-items="ViewBag.EventID"></select>
+                <span asp-validation-for="EventID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a href='@ViewData["returnURL"]'>Back to Athlete</a>
+</div>
+

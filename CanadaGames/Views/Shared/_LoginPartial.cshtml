@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    var userName = HttpContextAccessor.HttpContext.Request.Cookies["userName"] ?? UserManager.GetUserName(User);
+    <li class="nav-item dropdown">
+        <a  class="nav-link dropdown-toggle" href="#" id="navbarIDDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @userName - Menu<b class="caret"></b> 
+        </a>
+        <div class="dropdown-menu" aria-labelledy="navbarIDDropdown">
+            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Change Security Settings</a>
+            <a class="dropdown-item" asp-area="" asp-controller="UserAccount" asp-action="Details">Manage Account</a>
+
+            
+        </div>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    </li>
+}
+</ul>

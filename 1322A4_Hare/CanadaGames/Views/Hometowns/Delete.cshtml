@@ -1,0 +1,33 @@
+﻿@model CanadaGames.Models.Hometown
+
+@{
+    ViewData["Title"] = "Delete Hometown";
+}
+
+<h2>Delete Hometown</h2>
+
+<h4>Are you sure you want to delete @Model.Name?</h4>
+<div>
+    <hr />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contingent)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contingent.Code)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" asp-controller="Lookups" asp-route-Tab="HometownsTab">Back to Lookup List</a>
+    </form>
+</div>

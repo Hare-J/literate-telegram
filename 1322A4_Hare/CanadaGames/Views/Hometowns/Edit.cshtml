@@ -1,0 +1,39 @@
+﻿@model CanadaGames.Models.Hometown
+
+@{
+    ViewData["Title"] = "Edit Hometown";
+}
+
+<h2>Edit Hometown</h2>
+
+<hr />
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContingentID" class="control-label"></label>
+                <select asp-for="ContingentID" class="form-control" asp-items="ViewBag.ContingentID"></select>
+                <span asp-validation-for="ContingentID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index" asp-controller="Lookups" asp-route-Tab="HometownsTab">Back to Lookup List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
